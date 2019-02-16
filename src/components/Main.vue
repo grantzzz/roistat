@@ -1,6 +1,5 @@
 <template>
     <div class="wrapper">
-
         <v-button class="" v-on:click.native="showModal = true">Добавить</v-button>
         <table>
             <tr>
@@ -19,9 +18,6 @@
                     </tr>
                 </template>
             </template>
-
-
-
         </table>
         <v-modal v-if="showModal" v-bind:users="users"></v-modal>
     </div>
@@ -32,7 +28,6 @@
 import Modal from './Modal.vue';
 import Button from './Button.vue';
 export default {
-
 
   components: {
     'v-modal': Modal,
@@ -62,7 +57,6 @@ export default {
                     phone: '+79952334456',
                     id: '2'
                 },
-
             ],
             newUser: {
                 name: '',
@@ -84,7 +78,6 @@ export default {
 
         this.$on('addUser', function(newUser) {
             this.users.push(newUser);
-
             this.users.forEach(function (user, index) {
                 user.id = index
             });
@@ -135,8 +128,6 @@ export default {
                 });
                 this.isSorted = false;
             }
-
-
         },
 
         sortByName: function() {
@@ -153,32 +144,25 @@ export default {
             } else {
                 this.users.sort(function(a, b){
                     let nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
-
                     if (nameA > nameB)
                         return -1;
                     if (nameA < nameB)
                         return 1;
                     return 0
                 });
+
                 this.isSorted = false;
             }
-
-
         },
 
         removeUser: function (user) {
-
             this.users.splice(this.users.indexOf(user), 1);
             localStorage.users = JSON.stringify(this.users);
-            // this.users = this.users.filter(user.id => user.id !== 2)
         }
-
     }
-
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 .wrapper {
@@ -207,7 +191,6 @@ a {
   color: #42b983;
 }
 
-
 ul {
     padding: 0;
 }
@@ -223,18 +206,6 @@ ul {
 
 .user:last-child {
     border-bottom: 1px solid #eee;
-}
-
-.v-enter, .v-leave-active {
-    height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    border-top-width: 0;
-    border-bottom-width: 0;
-}
-
-.errors {
-    color: #f00;
 }
 
 table {
