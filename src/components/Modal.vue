@@ -2,20 +2,16 @@
   <transition name="Modal">
     <div class="overlay">
       <div class="modal">
-        <!--<span v-for="user in users" class="user" :key="user.id">{{user.name}}</span>-->
         <h4>Добавление пользователя</h4>
         <form id="form" v-on:submit.prevent="saveUser">
-
           <div class="form__element">
             <label>Имя</label><input type="text" v-model="newUser.name" placeholder="">
             <p class="error" v-show="!validation.name">Укажите имя</p>
           </div>
-
           <div class="form__element">
             <label>Телефон</label><input type="tel" v-model="newUser.phone" placeholder="">
             <p class="error" v-show="!validation.phone">Укажите корректный номер</p>
           </div>
-
           <select v-model="newUser.boss">
             <option disabled value="">Выберите начальника</option>
             <option v-for="user in users">{{user.name}}</option>
@@ -31,14 +27,13 @@
 <script>
 
   import Button from './Button.vue';
-  import Input from './Input.vue';
+
 export default {
 
   name: 'modal',
 
   components: {
     'v-button': Button,
-    'v-input': Input
   },
 
   props: ["users"],
@@ -62,19 +57,18 @@ export default {
         phone: phoneRE.test(this.newUser.phone)
       }
     },
+
     isValid: function () {
       let validation = this.validation
       return Object.keys(validation).every(function (key) {
         return validation[key]
       })
     }
-
   },
 
   methods: {
 
     saveUser: function () {
-
       let newUser = {
         name: '',
         phone: '',
@@ -103,108 +97,100 @@ export default {
       this.newUser.name = '';
       this.newUser.phone = '';
       this.newUser.boss = '';
-
       this.$parent.$emit('closeModal');
     }
   }
-
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
-  .overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-    z-index: 9998;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity .3s ease;
-  }
 
-  .modal {
-    box-sizing: border-box;
-    background-color: #fff;
-    width: 400px;
-    min-height: 300px;
-    padding: 30px 30px ;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-    transition: all .5s ease;
-    position: relative;
-  }
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity .3s ease;
+}
 
-  .modal-enter {
-    opacity: 0;
-  }
+.modal {
+  box-sizing: border-box;
+  background-color: #fff;
+  width: 400px;
+  min-height: 300px;
+  padding: 30px 30px ;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .5s ease;
+  position: relative;
+}
 
-  .modal-leave-active {
-    opacity: 0;
-  }
 
-  .modal-enter .overlay,
-  .modal-leave-active .overlay {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-  }
 
-  .modal__close {
-    width: 25px;
-    height: 25px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    transform: rotate(45deg);
-    cursor: pointer;
-  }
+.modal-enter .overlay,
+.modal-leave-active .overlay {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
 
-  .modal__close svg .fill {
-    fill: #27b99a;
-  }
+.modal__close {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
 
-  form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-  }
+.modal__close svg .fill {
+  fill: #27b99a;
+}
 
-  .form__element {
-    width: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .error {
-    position: absolute;
-    color: red;
-    font-size: 12px;
-    top: 35px;
-    right: 0;
-  }
+.form__element {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
-  label {
-    width: 30%;
-    text-align: left;
-    margin-bottom: 20px;
-  }
+.error {
+  position: absolute;
+  color: red;
+  font-size: 12px;
+  top: 35px;
+  right: 0;
+}
 
-  input {
-    width: 60%;
-    padding: 10px 15px;
-    margin-bottom: 20px;
-  }
+label {
+  width: 30%;
+  text-align: left;
+  margin-bottom: 20px;
+}
 
-  h4 {
-    text-align: left;
-    margin-top: 0;
-  }
+input {
+  width: 60%;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+}
 
+h4 {
+  text-align: left;
+  margin-top: 0;
+}
 
 </style>
