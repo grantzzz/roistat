@@ -63,7 +63,7 @@ export default {
       }
     },
     isValid: function () {
-      var validation = this.validation
+      let validation = this.validation
       return Object.keys(validation).every(function (key) {
         return validation[key]
       })
@@ -90,10 +90,8 @@ export default {
         };
 
         if(this.newUser.boss) {
-          debugger;
           this.$parent.$emit('addUserWithBoss', newUser);
         } else {
-          debugger;
           this.$parent.$emit('addUser', newUser);
         }
 
@@ -108,13 +106,6 @@ export default {
 
       this.$parent.$emit('closeModal');
     }
-    // isValid: function () {
-    //   var validation = this.validation;
-    //   return Object.keys(validation).every(function (key) {
-    //     /* return validation[key] */
-    //     return true
-    //   })
-    // }
   }
 
 }

@@ -76,7 +76,6 @@ export default {
     },
 
     mounted() {
-      debugger;
         if (localStorage.users) {
             this.users = JSON.parse(localStorage.users);
         } else {
@@ -94,10 +93,8 @@ export default {
         });
 
         this.$on('addUserWithBoss', function(newUser) {
-            debugger;
             this.users.forEach(function (user, index) {
                 if(user.name === newUser.boss) {
-                    debugger;
                     if(user.slaves) {
                         user.slaves.push(newUser);
                      } else {
@@ -117,10 +114,9 @@ export default {
 
     methods: {
         sortByPhone: function() {
-            debugger;
             if(!this.isSorted) {
                 this.users.sort(function(a, b){
-                    var nameA = a.phone.toLowerCase(), nameB = b.phone.toLowerCase();
+                    let nameA = a.phone.toLowerCase(), nameB = b.phone.toLowerCase();
                     if (nameA < nameB)
                         return -1;
                     if (nameA > nameB)
@@ -130,7 +126,7 @@ export default {
                 this.isSorted = true;
             } else {
                 this.users.sort(function(a, b){
-                    var nameA = a.phone.toLowerCase(), nameB = b.phone.toLowerCase()
+                    let nameA = a.phone.toLowerCase(), nameB = b.phone.toLowerCase()
                     if (nameA > nameB)
                         return -1;
                     if (nameA < nameB)
@@ -144,10 +140,9 @@ export default {
         },
 
         sortByName: function() {
-            debugger;
             if(!this.isSorted) {
                 this.users.sort(function(a, b){
-                    var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
+                    let nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
                     if (nameA < nameB)
                         return -1;
                     if (nameA > nameB)
@@ -157,7 +152,7 @@ export default {
                 this.isSorted = true;
             } else {
                 this.users.sort(function(a, b){
-                    var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
+                    let nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
 
                     if (nameA > nameB)
                         return -1;
